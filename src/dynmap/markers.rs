@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use reqwest::Error;
+use anyhow::Result;
 
 const MARKERS_LINK: &str = "https://map.thecavern.net/tiles/minecraft_overworld/markers.json";
 
@@ -60,7 +60,7 @@ pub struct PolylineMarker {
     pub points: Vec<Point>,
 }
 
-pub async fn get_marker_groups() -> Result<Vec<MarkerGroup>, Error> {
+pub async fn get_marker_groups() -> Result<Vec<MarkerGroup>> {
     let url: &str = MARKERS_LINK;
     
     let response = loop {

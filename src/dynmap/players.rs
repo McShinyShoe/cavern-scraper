@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use reqwest::Error;
+use anyhow::Result;
 use serde::Deserialize;
 
 const PLAYERS_LINK: &str = "https://map.thecavern.net/tiles/players.json";
@@ -24,7 +24,7 @@ pub struct Player {
     pub health: u8,
 }
 
-pub async fn get_online_players() -> Result<OnlinePlayers, Error> {
+pub async fn get_online_players() -> Result<OnlinePlayers> {
     let url = PLAYERS_LINK;
 
     let response = loop {

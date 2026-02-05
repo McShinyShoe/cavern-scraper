@@ -1,7 +1,5 @@
 #![allow(dead_code)]
 
-use reqwest::Error;
-
 mod dynmap;
 use dynmap::players::get_online_players;
 use dynmap::settings::get_setting;
@@ -9,8 +7,10 @@ use dynmap::settings::get_setting;
 mod cavern;
 use cavern::towny_info::get_towny_info;
 
+use anyhow::Result;
+
 #[tokio::main]
-async fn main() -> Result<(), Error> {
+async fn main() -> Result<()> {
     let data = get_online_players().await?;
     println!("{:#?}", &data);
 

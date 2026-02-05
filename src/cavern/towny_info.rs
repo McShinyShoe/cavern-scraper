@@ -2,7 +2,7 @@ use regex::Regex;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 
-use reqwest::Error;
+use anyhow::Result;
 
 use crate::dynmap::markers::{Marker, Point, get_marker_groups};
 
@@ -214,7 +214,7 @@ fn parse_dynmap_tooltip(tooltip: &str) -> Option<(String, String)> {
     }
 }
 
-pub async fn get_towny_info() -> Result<TownyInfo, Error> {
+pub async fn get_towny_info() -> Result<TownyInfo> {
     let mut towny_info: TownyInfo = TownyInfo {
         town_infos: HashMap::new(),
         nation_infos: HashMap::new(),

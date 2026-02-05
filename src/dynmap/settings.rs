@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use reqwest::Error;
+use anyhow::Result;
 
 const SETTING_LINK: &str = "https://map.thecavern.net/tiles/minecraft_overworld/settings.json";
 
@@ -47,7 +47,7 @@ pub struct Zoom {
     pub extra: u32,
 }
 
-pub async fn get_setting() -> Result<MapSetting, Error> {
+pub async fn get_setting() -> Result<MapSetting> {
     let url = SETTING_LINK;
 
     let response = loop {
