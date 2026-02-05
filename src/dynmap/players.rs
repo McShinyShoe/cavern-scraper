@@ -3,7 +3,7 @@
 use reqwest::Error;
 use serde::Deserialize;
 
-const PLAYERS_LINK: &str = "https://thecavern.net/map/tiles/players.json";
+const PLAYERS_LINK: &str = "https://map.thecavern.net/tiles/players.json";
 
 #[derive(Debug, Deserialize)]
 pub struct OnlinePlayers {

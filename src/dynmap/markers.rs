@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use reqwest::Error;
 
-const MARKERS_LINK: &str = "https://thecavern.net/map/tiles/minecraft_overworld/markers.json";
+const MARKERS_LINK: &str = "https://map.thecavern.net/tiles/minecraft_overworld/markers.json";
 
 #[derive(Debug, Deserialize)]
 pub struct MarkerGroup {

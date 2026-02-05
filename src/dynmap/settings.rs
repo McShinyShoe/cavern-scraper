@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use reqwest::Error;
 
-const SETTING_LINK: &str = "https://thecavern.net/map/tiles/minecraft_overworld/settings.json";
+const SETTING_LINK: &str = "https://map.thecavern.net/tiles/minecraft_overworld/settings.json";
 
 #[derive(Debug, Deserialize)]
 pub struct MapSetting {
