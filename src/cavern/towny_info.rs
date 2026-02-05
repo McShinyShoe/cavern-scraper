@@ -8,20 +8,20 @@ use crate::dynmap::markers::{Marker, Point, get_marker_groups};
 
 #[derive(Debug)]
 pub struct OnlinePlayer {
-    armor: i8,
-    health: i8,
-    location: Location,
-    name: String,
-    uuid: String,
-    yaw: i8,
+    pub armor: i8,
+    pub health: i8,
+    pub location: Location,
+    pub name: String,
+    pub uuid: String,
+    pub yaw: i8,
 }
 
 #[derive(Debug, Default)]
 pub struct Location {
-    x: f64,
-    y: f64,
-    z: f64,
-    world: World,
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+    pub world: World,
 }
 
 #[derive(Debug)]
@@ -83,25 +83,25 @@ fn multipolygon_area(multipolygon: &[Vec<Vec<Point>>]) -> i32 {
 
 #[derive(Debug, Default)]
 pub struct TownInfo {
-    name: String,
-    nation: String,
-    mayor: String,
-    pvp: bool,
-    assistants: Vec<String>,
-    residents: Vec<String>,
-    spawn: Location,
-    is_capital: bool,
-    size: i32,
+    pub name: String,
+    pub nation: String,
+    pub mayor: String,
+    pub pvp: bool,
+    pub assistants: Vec<String>,
+    pub residents: Vec<String>,
+    pub spawn: Location,
+    pub is_capital: bool,
+    pub size: i32,
 }
 
 #[derive(Debug)]
 pub struct PopupInfo {
-    name: String,
-    nation: String,
-    mayor: String,
-    pvp: bool,
-    assistants: Vec<String>,
-    residents: Vec<String>,
+    pub name: String,
+    pub nation: String,
+    pub mayor: String,
+    pub pvp: bool,
+    pub assistants: Vec<String>,
+    pub residents: Vec<String>,
 }
 
 impl From<PopupInfo> for TownInfo {
@@ -127,15 +127,15 @@ impl From<PopupInfo> for TownInfo {
 
 #[derive(Debug, Default)]
 pub struct NationInfo {
-    name: String,
-    capital: String,
-    towns: Vec<String>,
+    pub name: String,
+    pub capital: String,
+    pub towns: Vec<String>,
 }
 
 #[derive(Debug)]
 pub struct TownyInfo {
-    town_infos: HashMap<String, TownInfo>,
-    nation_infos: HashMap<String, NationInfo>,
+    pub town_infos: HashMap<String, TownInfo>,
+    pub nation_infos: HashMap<String, NationInfo>,
 }
 
 fn unescape_html_unicode(s: &str) -> String {
