@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use anyhow::Result;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -39,8 +39,12 @@ pub struct LowresConfig {
 }
 impl WorldSetting {
     pub async fn get(location: &str, world: &str) -> Result<WorldSetting> {
-        let url = format!("{}/maps/{}/settings.json", location.trim_end_matches('/'), world);
-        
+        let url = format!(
+            "{}/maps/{}/settings.json",
+            location.trim_end_matches('/'),
+            world
+        );
+
         let response = loop {
             let res = reqwest::get(url.as_str()).await?;
             if res.status().is_success() {

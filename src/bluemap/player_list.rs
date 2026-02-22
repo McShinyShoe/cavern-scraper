@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use anyhow::Result;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PlayerList {
@@ -31,8 +31,12 @@ pub struct Rotation {
 
 impl PlayerList {
     pub async fn get(location: &str, world: &str) -> Result<PlayerList> {
-        let url = format!("{}/maps/{}/live/players.json", location.trim_end_matches('/'), world);
-        
+        let url = format!(
+            "{}/maps/{}/live/players.json",
+            location.trim_end_matches('/'),
+            world
+        );
+
         let response = loop {
             let res = reqwest::get(url.as_str()).await?;
             if res.status().is_success() {

@@ -1,6 +1,6 @@
+use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-use anyhow::Result;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarkerConfig {
@@ -62,8 +62,12 @@ pub enum MarkerType {
 
 impl MarkerConfig {
     pub async fn get(location: &str, world: &str) -> Result<MarkerConfig> {
-        let url = format!("{}/maps/{}/live/markers.json", location.trim_end_matches('/'), world);
-        
+        let url = format!(
+            "{}/maps/{}/live/markers.json",
+            location.trim_end_matches('/'),
+            world
+        );
+
         let response = loop {
             let res = reqwest::get(url.as_str()).await?;
             if res.status().is_success() {
