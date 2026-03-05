@@ -22,11 +22,15 @@ pub struct MarkerGroup {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Marker {
-    pub classes: Vec<String>,
+    pub shape: Vec<Anchor>,
+    pub holes: Vec<Vec<Anchor>>,
+    pub shape_y: f32,
+    pub depth_test: bool,
+    pub line_width: f32,
+    pub line_color: Color,
+    pub fill_color: Color,
     pub detail: String,
-    pub icon: String,
-    pub anchor: Anchor,
-
+    pub new_tab: bool,
     pub min_distance: f32,
     pub max_distance: f32,
 
@@ -43,7 +47,7 @@ pub struct Marker {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Anchor {
     pub x: i32,
-    pub y: i32,
+    pub z: i32,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -54,9 +58,17 @@ pub struct Position {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Color {
+    pub r: f64,
+    pub g: f64,
+    pub b: f64,
+    pub a: f64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum MarkerType {
-    Poi,
+    Shape,
     // room to grow if new types appear
 }
 
