@@ -27,16 +27,12 @@ impl MapSetting {
     pub async fn get(location: &str) -> Result<MapSetting> {
         let url = format!("{}/settings.json", location.trim_end_matches('/'));
 
-        let response = loop {
-            let res = reqwest::get(url.as_str()).await?;
-            if res.status().is_success() {
-                let body = res.text().await?;
-                break body;
-            }
-            tokio::time::sleep(std::time::Duration::from_secs(1)).await;
+        let res = reqwest::get(url.as_str()).await?;
+        if res.status().is_success() {
+            let body = res.text().await?;
+            let groups: MapSetting = serde_json::from_str(&body)?;
+            return Ok(groups)
         };
-
-        let groups: MapSetting = serde_json::from_str(&response)?;
-        Ok(groups)
+        Err(anyhow::anyhow!("Failed to request {} with error code {}", url, res.status().as_u16()))
     }
 }
